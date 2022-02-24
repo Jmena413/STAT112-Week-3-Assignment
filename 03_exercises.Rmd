@@ -81,6 +81,11 @@ These exercises will reiterate what you learned in the "Expanding the data wrang
   1. Summarize the `garden_harvest` data to find the total harvest weight in pounds for each vegetable and day of week (HINT: use the `wday()` function from `lubridate`). Display the results so that the vegetables are rows but the days of the week are columns.
 
 ```{r}
+garden_harvest %>%
+  mutate(week_day = wday(date, label = TRUE)) %>%
+  group_by(vegetable, week_day) %>%
+  summarise(total_daily_harvest = sum(weight)) %>%
+  pivot_wider()
 
 ```
 
